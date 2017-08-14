@@ -27,6 +27,20 @@ hist(asian$age,
      main   = "Age Distribution (Asian) \n n = 104",
      las    = 1)
 
+# --------------------------------------------------------------------
+# Code to calculate age from the birth_date column.  I calculated ages
+# this way because R's as.Date function simply refused to work on the
+# birth_date column, making date arithmetic impossible.  I also tried
+# to use strsplit() to slice the birth_date column into its respective 
+# parts but this strategy failed as well.
+# --------------------------------------------------------------------
+
+y <- x[, c("birth_date","race")]
+
+y$birth_year <- substr(y$birth_date, nchar(y$birth_date) - 3, nchar(y$birth_date)) 
+y$age <- 2017 - as.numeric(y$birth_year)
+
+
 # ------------------------------------------------
 # Analysis of Aghane Antunes research data
 # ------------------------------------------------
