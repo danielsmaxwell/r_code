@@ -94,11 +94,12 @@ df <- read.csv("antunes_rainforest.csv", as.is = TRUE)
 x <- df[, c("ntfp","palmito","total")]
 x$n_tot <- x$ntfp + x$palmito
 
-nt <- x[x$n_tot > 0,]
-fit1 <- lm(nt$total ~ nt$n_tot)
+nt <- x                             # Take all of the rows.
+nt <- x[x$n_tot > 0,]               # Take only rows with values.
+fit1 <- lm(nt$total ~ nt$n_tot)     
 
 plot(nt$n_tot, nt$total)
-abline(fit7, col = "red")
+abline(fit1, col = "red")
 abline(h = 50000, col = "blue")
 
 res <- residuals(fit)
