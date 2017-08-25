@@ -164,3 +164,33 @@ fit7 <- lm(ag$total ~ ag$a_tot)
 plot(ag$a_tot, ag$total)
 abline(fit7, col = "red")
 
+# ------------------------------------------------
+# Larry Winner code
+# ------------------------------------------------
+
+rr.mar <- read.csv("http://www.stat.ufl.edu/~winner/data/rocknroll_marathon_mf2015a.csv",
+                   header=T)
+
+attach(rr.mar) 
+
+names(rr.mar)
+
+tapply(mph, Gender,mean)
+
+tapply(mph, Gender,sd)
+
+plot(Gender, mph)
+
+# What kind of graph do we get if gender is binary rather than
+# categorical?  First, we'll detach the dataframe in order to
+# add a new column.  Then we'll set a new column to 0 if Female
+# and 1 if male.  Reattach the dataframe and plot.
+
+detach(rr.mar)  
+
+rr.mar$MaleFemale <- ifelse(rr.mar$Gender == 'F', 0, 1)
+
+attach(rr.mar)
+
+plot(MaleFemale, mph)     # Plot the graph again...
+
