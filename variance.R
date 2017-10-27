@@ -14,14 +14,14 @@ par(mfrow = c(2, 2))
 tst <- rnorm(n = 100, mean = 0, sd = 1)
 
 # Generate a histogram of the original vector.
-hist(tst, breaks = seq(from = -3, to = 3, by = 1), 
+hist(tst, breaks = seq(from = -4, to = 4, by = 1), 
           main   = "Histogram",
           xlim   = range(-3:3),
           col    = "lightgreen")
 
 # Generate a density plot of the vector and add a curve to it.
 hist(tst, freq = FALSE, 
-     breaks = seq(from = -3, to = 3, by = 1),
+     breaks = seq(from = -4, to = 4, by = 1),
      main   = "Density", 
      col    = "lightgreen")
 
@@ -37,14 +37,14 @@ tst[101] <- 10        # Add an outlier.
 var(tst)              # Check variance.
 
 # Generate a histogram of the modified vector.
-hist(tst, breaks = seq(from = -3, to = 10, by = 1), 
+hist(tst, breaks = seq(from = -4, to = 10, by = 1), 
           main   = "Histogram",
           xlim   = range(-3:10),
           col    = "lightgreen")
 
 # Generate a density plot of the modified vector and add a curve to it.
 hist(tst, freq = FALSE, 
-     breaks = seq(from = -3, to = 10, by = 1),
+     breaks = seq(from = -4, to = 10, by = 1),
      main   = "Density", 
      col    = "lightgreen")
 
