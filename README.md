@@ -1,3 +1,3 @@
-## R Project Code
 
-R example code for workshops and seminars.
+### Joins in R
+- http://www.datasciencemadesimple.com/join-in-r-merge-in-r/
