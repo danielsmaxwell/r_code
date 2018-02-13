@@ -1,4 +1,42 @@
 # ------------------------------------------------
+# Steven Longmire's ggplot2() conundrum.
+# ------------------------------------------------
+
+library(ggplot2)
+
+wq <- read.csv("longmire_water.csv", header = TRUE, stringsAsFactors = FALSE)
+
+# -----------------------------------------------------------------------------------
+# The underlying problem is that the data is presented in 'wide' as opposed to 'long'
+# format.  Thus we need to peel off each column of interest and stack them, one on top
+# of the other.  Base R provides the stack() function to do this, but that does not
+# work here because of the desire to plot new_date on the x-axis.  Adding a 3rd column
+# to the stack() function creates a data mess.
+# -----------------------------------------------------------------------------------
+
+tp  <- data.frame('tp', wq$tp, wq$new_date)
+tn  <- data.frame('tn', wq$tn, wq$new_date)
+chl <- data.frame('chl', wq$chl, wq$new_date)
+
+# Set column names so they match.
+colnames(tp)  <- c('Measure','value','date')
+colnames(tn)  <- c('Measure','value','date')
+colnames(chl) <- c('Measure','value','date')
+
+df <- rbind(tp, tn, chl)
+
+# Update theme so the plot title will be centered.
+theme_update(plot.title = element_text(hjust = 0.5))  
+
+ggplot(df, aes(date, value, colour = Measure)) +
+  geom_point() +
+  geom_line(aes(group = Measure)) +
+  ggtitle('Station 1')
+
+# Reset theme to its default values.
+theme_set(theme_gray())
+
+# ------------------------------------------------
 # Analysis of Natalie Ridgewell's research data.
 # ------------------------------------------------
 
