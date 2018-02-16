@@ -1,4 +1,38 @@
 # ------------------------------------------------
+# Andreina Kostantinov's linguistic t-tests.
+# ------------------------------------------------
+
+tl <- read.delim('kostantinov_text_lengths.txt',header = TRUE, stringsAsFactors = FALSE)
+
+orig <- subset(tl, tl$TEXTSOURCE == 'Original')
+tran <- subset(tl, tl$TEXTSOURCE == 'Translation')
+
+# Calculate the mean and standard deviation for both groups.
+mean(orig$LENGTH)
+mean(tran$LENGTH)
+
+sd(orig$LENGTH)
+sd(tran$LENGTH)
+
+# The two-sample t-test.
+t.test(tran$LENGTH, orig$LENGTH, alternative = 'greater')
+
+t.test(orig$LENGTH, tran$LENGTH, alternative = 'greater')
+
+# The paired t-test.
+t.test(tran$LENGTH, orig$LENGTH, alternative = 'greater', paired = TRUE)
+
+t.test(tran$LENGTH, orig$LENGTH, alternative = 'greater', paired = TRUE)
+
+# Use the ifelse() function to create a column and populate it with values
+# depending on what is in the L1 column.
+
+df_2 <- read.delim('kostantinov_bilinguals.txt',header = TRUE, stringsAsFactors = FALSE)
+
+df_2$lang_class <- ifelse(df_2$L1 == 'English', 'monolingual','bilingual')
+
+
+# ------------------------------------------------
 # Steven Longmire's ggplot2() conundrum.
 # ------------------------------------------------
 
@@ -37,7 +71,7 @@ ggplot(df, aes(date, value, colour = Measure)) +
 theme_set(theme_gray())
 
 # ------------------------------------------------
-# Analysis of Natalie Ridgewell's research data.
+# Natalie Ridgewell's education research data.
 # ------------------------------------------------
 
 x <- read.csv("ridgewell_age_race.csv", as.is = TRUE)
