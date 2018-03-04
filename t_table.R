@@ -1,5 +1,5 @@
 #
-# This function returns t values for a given alpha level, degrees of freedom, and one/two tails.
+# This function returns t values for a given alpha level, degree of freedom, and one/two tails.
 #
 
 t_table <- function(alpha = .05, df = 1, tail = 1)
