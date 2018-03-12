@@ -1,16 +1,15 @@
-install.packages(c("gapminder", "tidyverse"))
+# Test the idea that sample mean approaches a population mean as the sample
+# size (n) increases
 
-### Case 1
-# Testing the idea: sample mean approaches population means
-# as sample size (n) increases
-# Fake population data, true mean = 0, true SD = 1
+# Generate fake population data, using rnorm().  When the mean and sd arguments
+# are not specified, the defaults are as follows: mean = 0, SD = 1.
 pop <- rnorm(10000)
 
-# Now we want to sample n individual from the population
-# and take the sample means. n = 1, 2, 3,...,1000.
+# Now we want to sample n individuals from the population and take the sample 
+# means. n = 1, 2, 3,...,1000.
 n <- 1:1000
 
-# Method 1: the for loop way
+# Calculate and store sample means in ml.
 m1 <- rep(NA, length(n))
 for (i in n) {
   x <- sample(pop, i)
