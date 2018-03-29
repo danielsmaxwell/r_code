@@ -1,6 +1,11 @@
-#
-# This function returns t values for a given alpha level, degree of freedom, and one/two tails.
-#
+#' t table function
+#'
+#' This function returns t values for a given alpha level, degree of freedom, and one/two tails.
+#' @param numeric input alpha, degrees of freedom and either 1 or 2 tails
+#' @keywords t table t-test
+#' @export
+#' @examples
+#' t_table(alpha = .05, df = 3, tail = 1)
 
 t_table <- function(alpha = .05, df = 1, tail = 1)
 {
