@@ -1,6 +1,11 @@
-#
-# This function returns body/tail proportions for a given z-score.
-#
+#' z table function
+#'
+#' This function returns body/tail proportions for a given z-score.
+#' @param numeric input a z-score
+#' @keywords z table score
+#' @export
+#' @examples
+#' z_table(z = 1.96)
  
 z_table <- function(z = 0.00)
 {
