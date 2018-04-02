@@ -23,7 +23,7 @@ renorm <- function(n, x_bar = 0, sdv = 1)
   x_bar_obs <- mean(vctr)
   sd_obs    <- sd(vctr)
 
-  # Calculate a z-score for each observation and then recalculate 
+  # Calculate a standard scroe for each observation and then recalculate 
   # observations using the requested standard deviation and mean.
   vctr     <- (vctr - x_bar_obs) / sd_obs
   vctr     <- sdv * vctr + x_bar
