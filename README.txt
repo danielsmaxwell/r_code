@@ -1,2 +1,2 @@
 
-Joins in R: http://www.datasciencemadesimple.com/join-in-r-merge-in-r/
+This folder contains R sample code for consultations and/or software development.
