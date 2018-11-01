@@ -17,7 +17,9 @@ library ("RSQLite")
 # If you run a SELECT statement against a newly created database, dbGetQuery throws 
 # an error, indicating that the table or view does not exist.  When this happens, 
 # take a look at the location of the database file in the con object.  Best practice
-# here is to specify the full pathname to the database file in the dbname argument.
+# here is to specify the full pathname to the database file in the dbname argument
+# so you don't have to deal with the unintended consequences of new but empty 
+# database.
 #
 
 # Connect to the database.
