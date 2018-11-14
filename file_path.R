@@ -1,21 +1,20 @@
 
-library ("RSQLite")
+# The file.path() function "constructs file paths that are correct, independent of the
+# operating system you work on." This frees the programmer from having to figure out the 
+# slashes, whether forward or backward, on a given operating system.
 
-con <- dbConnect(drv = SQLite(), dbname = "don_blackbear_gradres.db")
-con <- dbConnect(drv = SQLite(), dbname = "c:/informatics/don_blackbear_gradres.db")
+# Additional information can be found at:
+# https://www.dummies.com/programming/r/how-to-work-with-files-and-folders-in-r/
+#
 
-tst <- dbGetQuery(con, 'select * from sqlite_master;')
+# Generate a Windows path.
+file_path <- file.path('c:','informatics')
 
-tst <- dbGetQuery(con, 'select count(*) from bear_hyperphagia_2hr')
+# Embed file.path() inside setwd()
+setwd(file.path('c:','informatics'))
 
-all_rows <- dbGetQuery(con, 'select * from bear_hyperphagia_2hr')
+# Verify that the default path has been set.
+getwd()
 
-all_tables <- dbListTables(con)
-
-all_tables
-
-nbiome <- dbGetQuery(con, 'select * from natural_microbiome')
-
-nrow(nbiome)
-
-dbDisconnect(con)
+# On Macs, you need to append a backslash to the first item in the path.
+file_path <- file.path("/Users", "jash", "Desktop", "Rtest", "fall2018-R for beginners-sample data", "adult mouse heart nucleotides.xlsx")
