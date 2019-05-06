@@ -31,7 +31,7 @@ all_tables <- dbListTables(con)
 all_tables
 
 # Run a count query.
-row_cnt <- dbGetQuery(con, 'select count(*) from bear_hyperphagia_2hr')
+row_cnt <- dbGetQuery(con, 'select count(*) from anyTable')
 row_cnt
 
 # Another way of determining how many objects are in the database.
