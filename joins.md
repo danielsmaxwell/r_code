@@ -1,2 +1,2 @@
 
-For a comprehensive overview of R joins, click [here](http://www.datasciencemadesimple.com/join-in-r-merge-in-r/).
+Click [here](http://www.datasciencemadesimple.com/join-in-r-merge-in-r/) for an overview/tutorial of R joins.
