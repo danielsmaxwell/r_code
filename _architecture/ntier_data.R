@@ -1,4 +1,3 @@
-
 # Package dependencies for the functions in this file.
 
 .onload <- function(libname, pkgname){
