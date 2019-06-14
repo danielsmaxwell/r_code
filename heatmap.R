@@ -6,7 +6,7 @@
 
 library(RColorBrewer)
 
-tmp_df <- read.csv("heatmap_data.csv", stringsAsFactors = FALSE)
+tmp_df <- read.csv("heatmap.csv", stringsAsFactors = FALSE)
 
 my_palette <- colorRampPalette(c("lightyellow", "lightblue"))(n = 299)
 
