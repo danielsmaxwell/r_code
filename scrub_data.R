@@ -14,7 +14,7 @@ books <- read.csv("books.csv", stringsAsFactors = FALSE)
 
 books <- readr::read_csv("books.csv")
 
-# Do not use the tibble function.  In certain contexts (versions of RStudio), the tibble() function converts a dataframe but this then leads to the "unknown or uninitialized column warning."  See RStudio bugs for details.  The as_tibble() function is a better option.
+# Do not use the tibble function.  In certain contexts (versions of RStudio), the tibble() function converts a dataframe but this then leads to the "unknown or uninitialized column warning."  See RStudio bugs for details. Use as_tibble() instead.
 books <- tibble(books)
 books <- as_tibble(books)
 
@@ -48,8 +48,6 @@ table(books$TOT_CHKOUT > 50)
 # How many books have over 100 checkouts?
 books <- as_tibble(books)
 books[books$TOT_CHKOUT > 100, c("X245.ab")]
-
-# What are the titles?
 
 # ---------------------------------------------------------------------
 # Duplicated 
@@ -162,10 +160,10 @@ c("do", "re", "mi", "fa", "so") [1]
 # Pull a single variable into a tibble with names
 books[5, 2]
 
-### Pull out a single variable without names
+# Pull out a single variable without names
 books[[5, 2]]
 
-### Use names to pull data
+# Use names to pull data
 books[[2, "title"]]
 
 # Subsetting using brackets is important to understand, but as with other R functions, the `dplyr` package makes it much more straightforward, using the `filter()` function.
@@ -179,18 +177,22 @@ bookCheckouts <- filter(books,
                         format == "book",
                         tot_chkout > 0) 
 
-### How many are there? 
+# How many are there? 
 nrow(bookCheckouts)
 
-### What percentage of all books have at least one checkout?
+# Exercises ********************************************************************
 
-### Run `unique(books$location)` and `unique(books$sub_collection)` to confirm the values in each of these fields.
+# What percentage of all books have at least one checkout?
+
+# Run `unique(books$location)` and `unique(books$sub_collection)` to confirm the values in each of these fields.
 
 
-### Create a new data frame filtering to keep format == books and tot_chkout > 20. Use the `table()` function to see the breakdown of booksOnly by `sub_collection`. Which sub-collection has the most items with 20 or more checkouts?
+# Create a new data frame filtering to keep format == books and tot_chkout > 20. Use the `table()` function to see the breakdown of booksOnly by `sub_collection`. Which sub-collection has the most items with 20 or more checkouts?
 
 
-### Create a data frame consisting of `format` books and `sub_collection` juvenile materials. What is the average number of checkouts `tot_chkout` for juvenile books?
+# Create a data frame consisting of `format` books and `sub_collection` juvenile materials. What is the average number of checkouts `tot_chkout` for juvenile books?
+
+# *****************************************************************************
 
 # ---------------------------------------------------------------------
 # Selecting variables
@@ -247,6 +249,8 @@ myBooks <- books %>%
 #    where format = 'book'
 # order by tot_chkout desc
 
+# Exercises *****************************************************************
+
 # Create a new data frame from books with these conditions:
 # filter to include subCollection juvenile & k-12 materials and format books
 # select only title, call number, total checkouts, and pub year
@@ -258,93 +262,4 @@ myBooks <- books %>%
 # filter to include only books published after 1990
 # arrange from oldest to newest publication year
 
-# ---------------------------------------------------------------------
-# Lists 
-# ---------------------------------------------------------------------
-
-install.packages("tidyverse")
-install.packages("repurrrsive")
-
-library(purrr)
-library(repurrrsive)
-
-x <- list(a = "a", b = 2)
-View(x)
-
-# The $ operator. Extracts a single element by name. 
-x$a
-x$b
-
-# [[ a.k.a. double square bracket. Extracts a single element by name or position. Name must be quoted, if provided directly. Name or position can also be stored in a variable.
-x[["a"]]
-x[[2]]
-
-i <- 2
-x[[i]]
-
-# [ a.k.a. single square bracket. Regular vector indexing. For a list input, this always returns a list!
-x["a"]
-
-# Pepper shaker example
-x <- list("a" = c(1, 2, 3, 4))
-x[1]
-x[[1]]
-x[[1]][[1]]
-
-# pluck allows you to index deeply and flexibly into data structures
-pluck(x, 1)
-pluck(x, 1, 1)
-
-y <- list("a" = list(1, 2, 3, 4),
-          "b" = list(11, 12, 13, 14))
-pluck(y, 1)
-
-# How would you pluck "b"? 
-
-# Returns a list item with the first value of each list
-map(y, pluck(1))
-
-# Returns a numberic item with the first value of each list
-map_dbl(y, pluck(1))
-
-View(got_chars)
-
-# Get all the data for the first name
-View(pluck(got_chars, 1))
-
-# Get all the name values only
-got_names <- map(got_chars, pluck(3))
-
-# Can also use column names
-got_names <- map(got_chars, pluck("name"))
-
-# Clearer to use pipes
-got_names <- got_chars %>%
-  map(pluck("name"))
-
-# Use names() to inspect the names of the list elements associated with a single character. What is the index or position of the playedBy element? Use the character and position shortcuts to extract the  playedBy elements for all characters.
-
-# map() always returns a list, even if all the elements have the same flavor and are of length one. But in that case, you might prefer a simpler object: an atomic vector.
-
-# map() makes a list.
-# map_lgl() makes a logical vector.
-# map_int() makes an integer vector.
-# map_dbl() makes a double vector.
-# map_chr() makes a character vector.
-
-got_names <- got_chars %>%
-  map_chr(pluck("name"))
-
-# When programming, it is safer, but more cumbersome, to explicitly specify type and build your data frame the usual way.
-
-got_data <- got_chars %>% {
-  tibble(
-    name = map_chr(., "name"),
-    culture = map_chr(., "culture"),
-    gender = map_chr(., "gender"),       
-    id = map_int(., "id"),
-    born = map_chr(., "born"),
-    alive = map_lgl(., "alive")
-  )
-}
-
+# ***************************************************************************
