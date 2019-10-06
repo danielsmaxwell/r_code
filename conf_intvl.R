@@ -2,6 +2,9 @@
 # This sample code shows how to create a basic graph with 95% confidence interval 
 # bars.  Note: the CI calculation is  t * sdev / sqrt(N).  Of course, t is the t 
 # table value for a given degree of freedom (DF), calculated as N - 1.
+#
+# Information about plotting confidence intervals in ggplot2 can be found at:
+#    https://www.quora.com/How-do-you-graph-a-confidence-interval-in-ggplot2-R
 # -------------------------------------------------------------------------------
 
 # Generate a vector of numbers.
