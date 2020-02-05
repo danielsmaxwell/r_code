@@ -3,7 +3,7 @@
 R education code and examples.
 
 ------------------------------------------------------------------
-### Notes
+### R Programming Notes
 
 #### The [] Operator
 You need [[ when working with lists. This is because when [ is applied to a list it always returns a list: it never gives you the contents of the list. To get the contents, you need [[:
